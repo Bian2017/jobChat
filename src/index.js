@@ -1,8 +1,16 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import registerServiceWorker from './registerServiceWorker';
+import React from 'react'
+import ReactDom from 'react-dom'
+import { createStore } from 'redux'
+import App from './App'
+import { counter } from './reduxStore';
 
-ReactDOM.render(<App />, document.getElementById('root'));
-registerServiceWorker();
+const store = createStore(counter)
+
+function render() {
+  ReactDom.render(<App store={store} />, document.getElementById('root'))
+}
+
+render()
+
+// 当store发生变化时，调用render
+store.subscribe(render)

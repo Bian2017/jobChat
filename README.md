@@ -67,11 +67,10 @@ nodemon server/server.js
 
 brew install mongodb
 
-// 后台启动
+//后台启动
 mongod --config /usr/local/etc/mongod.conf
 
-// 启动MongoDB
-
+//启动MongoDB
 mongo
 ```
 
