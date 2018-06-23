@@ -1,56 +1,93 @@
-This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
-Below you will find some information on how to perform common tasks.<br>
-You can find the most recent version of this guide [here](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md).
-
-## Table of Contents
+# Chat
 
 
-### 环境初始化
+## 环境配置
 
-> npm install -g create-react-app
+### 1. 新建工程
 
-> create-react-app chat
+```bash
+npm install -g create-react-app
 
-> npm start
+create-react-app chat
 
+npm start
+```
 
-### 自定义配置webpack
+**自定义配置webpack**
 
-> npm run eject
+    npm run eject
 
-注意：是单向的，不可逆的。
+注意：此过程是单向的，不可逆的。
 
+### 2. antd-moblie配置
 
-
-### 其他配置
-
-// 修改文件，每次都需要重启
-> node server/server.js
-
-
-安装nodemon
-
-> npm install -g nodemon
-
-无需每次再重启node端口
-> nodemon server/server.js
-
-安装mongodb
-
-> brew install mongodb
-
-后台启动
-
-> mongod --config /usr/local/etc/mongod.conf
-
-启动MongoDB
-
-> mongo
-
-安装mongoose
-
-> npm install mongoose --save
+    npm install antd-mobile --save
 
 
+**配置按需加载**
+
++ 使用babel-plugin-import；
+
+    npm install babel-plugin-import --save
+
++ 配置package.json；
+
+```json
+ "babel": {
+    "presets": [
+      "react-app"
+    ],
+    "plugins": [
+      [
+        "import",
+        {
+          "libraryName": "antd-mobile",
+          "style": "css"
+        }
+      ]
+    ]
+  },
+```
+
+### 3. 后端配置
+
++ 安装nodemon
+由于每次修改后端代码，都需重启node。安装nodemon，则无需重启Node服务。
+
+```bash
+npm install -g nodemon
+
+nodemon server/server.js
+```
+
++ 安装mongodb
+
+```bash
+
+brew install mongodb
+
+// 后台启动
+mongod --config /usr/local/etc/mongod.conf
+
+// 启动MongoDB
+
+mongo
+```
+
++ 安装mongoose依赖
+
+```bash
+npm install mongoose --save
+```
+
+#### TIPS
+
+1. 为什么点击事件通过箭头函数方式调用?
+
+```JS
+<button onClick={()=>this.handleClick()}>
+```
+
+答：通过箭头函数绑定this，避免直接对函数使用bind(this)操作。
 
