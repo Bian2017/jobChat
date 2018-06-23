@@ -1,5 +1,4 @@
 import React from 'react'
-import { addNumber } from './reduxStore'
 
 class App extends React.Component {
   constructor(props) {
@@ -9,10 +8,13 @@ class App extends React.Component {
   render() {
     const store = this.props.store
     const num = store.getState()
+    const addNumber = this.props.addNumber
+    const reduceNumber = this.props.reduceNumber
 
     return <div>
-      <h2>欢迎来到新世界， 当前Click {num}次</h2>
-      <button onClick={() => { store.dispatch(addNumber()) }}>Click</button>
+      <h2>欢迎来到新世界， 当前自加 {num}次</h2>
+      <button onClick={() => { store.dispatch(addNumber()) }}>自加</button>
+      <button onClick={() => { store.dispatch(reduceNumber()) }}>自减</button>
     </div>
   }
 }
