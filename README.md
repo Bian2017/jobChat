@@ -113,6 +113,19 @@ const store = createStore(counter, compose(
 
 打开调试窗的redux选项卡，此时则可以实时看到state。
 
+### 3. React-Redux配置
+
++ 安装react-redux
+
+npm install react-redux --save
+
++ 使用react-redux
+
+此时就不再需要subscribe，只需记住reducer、action、dispatch即可。React-redux提供Provider和connect两个接口来链接。
+
+    1. Provider组件在应用最外层，传入store即可，只用一次；
+    2. Connect负责从外部获取组件需要的参数，Connect可以用装饰器的方式来写；
+
 #### TIPS
 
 1. 为什么点击事件通过箭头函数方式调用?
