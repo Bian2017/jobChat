@@ -160,11 +160,30 @@ React-router4是全新版本，和之前的版本不兼容，浏览器和RN均�
 
 注意： 如果有路由嵌套的话，要加上exact参数，表示完全匹配。
 
+
 ```JS
 <Route path='/' exact component={App}></Route>
 <Route path='/two' component={Two}></Route>
 <Route path='/three' component={Three}></Route>
 ```
+
++ 其他组件
+
+  + url参数，Route组件参数可用冒号标识参数
+  + Redirect组件，跳转
+  + Switch只渲染第一个命中的Route组件
+
+```JS
+<Switch>
+  <Route path='/' exact component={App}></Route>
+  <Route path='/two' component={Two}></Route>
+  <Route path='/three' component={Three}></Route>
+  <Route path='/:location' component={Test}></Route>
+</Switch>
+```
+
+如上代码，访问路径/two，会命中两个Route组件，分别是Two组件和Test组件。此时通过Switch，就只会渲染Two组件。
+
 #### TIPS
 
 1. 为什么点击事件通过箭头函数方式调用?
