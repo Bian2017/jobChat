@@ -52,6 +52,6 @@ app.get('/data', (req, res) => {
 })
 
 
-app.listen(8010, () => {
-  console.log('Listen on 8010')
+app.listen(8080, () => {
+  console.log('Listen on 8080')
 })

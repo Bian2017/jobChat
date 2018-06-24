@@ -7,6 +7,7 @@ import { BrowserRouter, Route, Redirect, Switch } from 'react-router-dom'
 import Auth from './Auth'
 import Dashboard  from './Dashboard'
 import reducers from './reducer'
+import './config'
 
 // 不存在则执行空函数
 const reduxDevtools = window.devToolsExtension ? window.devToolsExtension() : () => { }

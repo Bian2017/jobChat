@@ -187,6 +187,34 @@ React-router4是全新版本，和之前的版本不兼容，浏览器和RN均�
 
 如上代码，访问路径/two，会命中两个Route组件，分别是Two组件和Test组件。此时通过Switch，就只会渲染Two组件。
 
+
+### 5. axios
+
++ 安装axios
+
+    npm install axios --save
+
+解决本地跨域问题：配置package.json，将所有请求发到本地的8080端口。
+
+```JSON
+ "proxy": "http://localhost:8080"
+```
+
++ 设置拦截器
+
+所谓的拦截器，就是所有的请求发送之前都要做的事情，或者所有请求返回之后要做的事情。通过axios.interceptors设置拦截器，比如全局的loading。
+
+```JS
+// 拦截请求---在发送请求的时候都要加上loading
+axios.interceptors.request.use(function(config) {
+  Toast.loading('加载中', 0)
+  return config
+})
+```
+
+
+
+
 #### TIPS
 
 1. 为什么点击事件通过箭头函数方式调用?
