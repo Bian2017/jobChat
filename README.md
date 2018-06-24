@@ -150,8 +150,21 @@ const store = createStore(counter, compose(
   ]
 }
 ```
+### 4. React-router4
 
+React-router4是全新版本，和之前的版本不兼容，浏览器和RN均兼容。忘了Router2的内容，拥抱最新的Router4吧。
 
++ 安装React-router4
+
+    npm install react-router-dom --save
+
+注意： 如果有路由嵌套的话，要加上exact参数，表示完全匹配。
+
+```JS
+<Route path='/' exact component={App}></Route>
+<Route path='/two' component={Two}></Route>
+<Route path='/three' component={Three}></Route>
+```
 #### TIPS
 
 1. 为什么点击事件通过箭头函数方式调用?
