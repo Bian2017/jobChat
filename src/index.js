@@ -16,8 +16,6 @@ const store = createStore(reducers, compose(
   reduxDevtools
 ))
 
-console.log(store.getState())
-
 ReactDom.render(
   (<Provider store={store}>
     <BrowserRouter>

@@ -18,24 +18,21 @@ function Three() {
 )
 
 class Dashboard extends React.Component {
-  constructor(props) {
-    super(props)
-  }
-
   render() {
+    const match = this.props.match
     const redirectToLogin = <Redirect to='/login'></Redirect>
 
     const app = (
       <div>
         {this.props.isAuth ? <button onClick={() => this.props.logout()}>注销</button> : null}
         <ul>
-          <li><Link to='/dashborad/'>第一页</Link></li>
-          <li><Link to='/dashboard/two'>第二页</Link></li>
-          <li><Link to='/dashboard/three'>第三页</Link></li>
+          <li><Link to={`${match.url}`}>第一页</Link></li>
+          <li><Link to={`${match.url}/two`}>第二页</Link></li>
+          <li><Link to={`${match.url}/three`}>第三页</Link></li>
         </ul>
-        <Route path='/dashboard/' exact component={App}></Route>
-        <Route path='/dashboard/two' component={Two}></Route>
-        <Route path='/dashboard/three' component={Three}></Route>
+        <Route path={`${match.url}`} exact component={App}></Route>
+        <Route path={`${match.url}/two`} component={Two}></Route>
+        <Route path={`${match.url}/three`} component={Three}></Route>
       </div>)
 
     return this.props.isAuth ? app : redirectToLogin
