@@ -1,16 +1,22 @@
 import React from 'react'
 import ReactDom from 'react-dom'
-import { createStore } from 'redux'
+import { createStore, applyMiddleware, compose } from 'redux'
+import thunk from 'redux-thunk'
+import { Provider } from 'react-redux'
 import App from './App'
-import { counter } from './reduxStore';
+import { counter } from './reduxStore'
 
-const store = createStore(counter)
+// 不存在则执行空函数
+const reduxDevtools = window.devToolsExtension ? window.devToolsExtension() : () => { }
 
-function render() {
-  ReactDom.render(<App store={store} />, document.getElementById('root'))
-}
+const store = createStore(counter, compose(
+  applyMiddleware(thunk),
+  reduxDevtools
+))
 
-render()
-
-// 当store发生变化时，调用render
-store.subscribe(render)
+ReactDom.render(
+  (<Provider store={store}>
+    <App />
+  </Provider>),
+  document.getElementById('root')
+)
