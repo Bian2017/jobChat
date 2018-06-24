@@ -150,6 +150,9 @@ const store = createStore(counter, compose(
   ]
 }
 ```
+
++ 复杂redux应用，多个reducer，用combineReducers合并
+
 ### 4. React-router4
 
 React-router4是全新版本，和之前的版本不兼容，浏览器和RN均兼容。忘了Router2的内容，拥抱最新的Router4吧。

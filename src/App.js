@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { addNumber, reduceNumber, addNumberAsync } from './reduxStore'
+import { addNumber, reduceNumber, addNumberAsync } from './index.redux'
 
 // const mapStatetoProps = state => {
 //   return { num: state }
@@ -11,7 +11,7 @@ import { addNumber, reduceNumber, addNumberAsync } from './reduxStore'
 
 @connect(
   //第一个参数：你要state里面的什么属性，然后放到props里。
-  state => ({ num: state }),
+  state => ({ num: state.counter }),
   //第二个参数: 你要什么方法，放到props里，并自动dispatch。
   { addNumber, reduceNumber, addNumberAsync }
 )

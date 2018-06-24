@@ -3,57 +3,28 @@ import ReactDom from 'react-dom'
 import { createStore, applyMiddleware, compose } from 'redux'
 import thunk from 'redux-thunk'
 import { Provider } from 'react-redux'
-import { BrowserRouter, Route, Link, Redirect, Switch } from 'react-router-dom'
-import App from './App'
-import { counter } from './reduxStore'
+import { BrowserRouter, Route, Redirect, Switch } from 'react-router-dom'
+import Auth from './Auth'
+import Dashboard  from './Dashboard'
+import reducers from './reducer'
 
 // 不存在则执行空函数
 const reduxDevtools = window.devToolsExtension ? window.devToolsExtension() : () => { }
 
-const store = createStore(counter, compose(
+const store = createStore(reducers, compose(
   applyMiddleware(thunk),
   reduxDevtools
 ))
 
-function Two() {
-  return <h2>hello, two </h2>
-}
-
-function Three() {
-  return <h2>hello ,three </h2>
-}
-
-function Test(props) {
-  console.log(props)
-
-  // 可以通过history.push来实现路由的调整
-  // props.history.push('/')   
-
-  // 可以通过如下形式获取url里的参数
-  return <h2>hello Test {props.match.params.location} </h2>
-}
-
 ReactDom.render(
   (<Provider store={store}>
     <BrowserRouter>
-      <div>
-        <ul>
-          <li><Link to='/'>第一页</Link></li>
-          <li><Link to='/two'>第二页</Link></li>
-          <li><Link to='/three'>第三页</Link></li>
-        </ul>
-        {/*无论返回什么，都跳转到/two目录下*/}
-        {/* <Redirect to="/two"></Redirect> */}
-
-        {/*只渲染命中的第一个Route*/}
-        <Switch>
-          <Route path='/' exact component={App}></Route>
-          <Route path='/two' component={Two}></Route>
-          <Route path='/three' component={Three}></Route>
-          <Route path='/:location' component={Test}></Route>
-        </Switch>
-      </div>
+      <Switch>
+        <Route path='/login' exact component={Auth}></Route>
+        <Route path='/dashboard' component={Dashboard}></Route>
+        <Redirect to='/dashboard'></Redirect>
+      </Switch>
     </BrowserRouter>
-  </Provider>),
+  </Provider >),
   document.getElementById('root')
 )
