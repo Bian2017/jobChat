@@ -117,7 +117,7 @@ const store = createStore(counter, compose(
 
 + 安装react-redux
 
-npm install react-redux --save
+    npm install react-redux --save
 
 + 使用react-redux
 
@@ -125,6 +125,32 @@ npm install react-redux --save
 
     1. Provider组件在应用最外层，传入store即可，只用一次；
     2. Connect负责从外部获取组件需要的参数，Connect可以用装饰器的方式来写；
+
++ 使用装饰器优化connect代码
+
+先安装支持装饰器的插件
+
+    npm install babel-plugin-transform-decorators-legacy --save-dev
+
+然后配置package.json。
+```json
+"babel": {
+  "presets": [
+    "react-app"
+  ],
+  "plugins": [
+    "transform-decorators-legacy",      //添加此句
+    [
+      "import",
+      {
+        "libraryName": "antd-mobile",
+        "style": "css"
+      }
+    ]
+  ]
+}
+```
+
 
 #### TIPS
 
