@@ -3,7 +3,7 @@
 
 
 
-## 环境配置
+## 一、环境配置
 
 ### 1. 新建工程
 
@@ -81,15 +81,37 @@ mongo
 npm install mongoose --save
 ```
 
-## Redux配置
+## 二、Redux配置
 
-### React-thunk中间件
+### 1. React-thunk中间件
 
 Redux默认只处理同步，异步任务需要react-thunk中间件。使用这个插件，Action不仅可以返回对象，还可以返回函数。
 
     npm install redux-thunk --save
 
-注意： 使用applyMiddleware开启thunk中间件。
+然后使用applyMiddleware开启thunk中间件。
+
+    const store = createStore(counter, applyMiddleware(thunk))
+
+### 2. Redux DevTools调试工具配置
+
++ 先安装Chrome插件Redux DevTools。
++ 新建store的时候判断window.devToolsExtension。
+
+```js
+// 不存在则执行空函数
+const reduxDevtools = window.devToolsExtension ? window.devToolsExtension() : () => { }
+```
++ 使用compose结合thunk和window.devToolsExtension
+
+```js
+const store = createStore(counter, compose(
+  applyMiddleware(thunk),
+  reduxDevtools
+))
+```
+
+打开调试窗的redux选项卡，此时则可以实时看到state。
 
 #### TIPS
 
