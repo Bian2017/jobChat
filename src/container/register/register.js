@@ -8,8 +8,23 @@ class Register extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
+      user: '',
+      pwd: '',
+      repeatPwd: '',
       type: 'jobSeekers'      //或者boss
     }
+
+    this.handleRegister = this.handleRegister.bind(this)
+  }
+
+  handleChange(key, val) {
+    this.setState({
+      [key]: val
+    })
+  }
+
+  handleRegister() {
+    console.log('state', this.state)
   }
 
   render() {
@@ -17,18 +32,37 @@ class Register extends React.Component {
       <div>
         <Logo />
         <List>
-          <InputItem>用户</InputItem>
-          <InputItem>密码</InputItem>
-          <InputItem>确认密码</InputItem>
-          <RadioItem checked={this.state.type == 'jobSeekers'}>
+          <InputItem
+            onChange={v => this.handleChange('user', v)}
+          >
+            用户
+          </InputItem>
+          <InputItem
+            type='password'
+            onChange={v => this.handleChange('pwd', v)}
+          >
+            密码
+          </InputItem>
+          <InputItem
+            type='password'
+            onChange={v => this.handleChange('repeatPwd', v)}
+          >
+            确认密码
+          </InputItem>
+          <RadioItem
+            checked={this.state.type === 'jobSeekers'}
+            onChange={() => this.handleChange('type', 'jobSeekers')}
+          >
             求职者
           </RadioItem>
-          <RadioItem checked={this.state.type == 'boss'}>
+          <RadioItem
+            checked={this.state.type === 'boss'}
+            onChange={() => this.handleChange('type', 'boss')}
+          >
             老板
           </RadioItem>
-          <Button type="primary">注册</Button>
+          <Button type="primary" onClick={this.handleRegister}>注册</Button>
         </List>
-        <h2>注册页</h2>
       </div>
     )
   }
