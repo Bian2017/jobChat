@@ -2,6 +2,7 @@
 # Chat
 
 
+
 ## 环境配置
 
 ### 1. 新建工程
@@ -79,6 +80,16 @@ mongo
 ```bash
 npm install mongoose --save
 ```
+
+## Redux配置
+
+### React-thunk中间件
+
+Redux默认只处理同步，异步任务需要react-thunk中间件。使用这个插件，Action不仅可以返回对象，还可以返回函数。
+
+    npm install redux-thunk --save
+
+注意： 使用applyMiddleware开启thunk中间件。
 
 #### TIPS
 

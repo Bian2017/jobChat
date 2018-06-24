@@ -1,14 +1,19 @@
 import React from 'react'
 import ReactDom from 'react-dom'
-import { createStore } from 'redux'
+import { createStore, applyMiddleware } from 'redux'
+import thunk from 'redux-thunk'
 import App from './App'
-import { counter, addNumber, reduceNumber } from './reduxStore';
+import { counter, addNumber, addNumberAsync, reduceNumber } from './reduxStore'
 
-const store = createStore(counter)
+const store = createStore(counter, applyMiddleware(thunk))
 
 function render() {
   ReactDom.render(
-    <App store={store} addNumber={addNumber} reduceNumber={reduceNumber} />,
+    <App store={store}
+      addNumber={addNumber}
+      reduceNumber={reduceNumber}
+      addNumberAsync={addNumberAsync}
+    />,
     document.getElementById('root')
   )
 }

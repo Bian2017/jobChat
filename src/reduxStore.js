@@ -22,3 +22,10 @@ export function reduceNumber() {
   return { type: REDUCE_OPER }
 }
 
+export function addNumberAsync() {
+  return dispatch => {
+    setTimeout(() => {
+      dispatch(addNumber())
+    }, 1000)
+  }
+}
