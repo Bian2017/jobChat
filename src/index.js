@@ -13,6 +13,7 @@ import Dashboard from './component/dashboard/dashboard'
 import AuthRoute from './component/authRoute/authRoute'
 import reducers from './reducer'
 import './config'
+import './index.css'
 
 // 不存在则执行空函数
 const reduxDevtools = window.devToolsExtension ? window.devToolsExtension() : () => { }
