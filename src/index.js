@@ -9,6 +9,7 @@ import Login from './container/login/login'
 import Register from './container/register/register'
 import BossInfo from './container/bossinfo/bossinfo'
 import JobSeekersInfo from './container/jobseekersinfo/jobSeekersInfo'
+import Dashboard from './component/dashboard/dashboard'
 import AuthRoute from './component/authRoute/authRoute'
 import reducers from './reducer'
 import './config'
@@ -21,10 +22,6 @@ const store = createStore(reducers, compose(
   reduxDevtools
 ))
 
-function Boss() {
-  return <h2>Boss 页面</h2>
-}
-
 ReactDom.render(
   (<Provider store={store}>
     <BrowserRouter>
@@ -35,6 +32,7 @@ ReactDom.render(
           <Route path='/jobseekersinfo' component={JobSeekersInfo}></Route>
           <Route path='/login' component={Login}></Route>
           <Route path='/register' component={Register}></Route>
+          <Route component={Dashboard}></Route>
         </Switch>
       </div>
     </BrowserRouter>
