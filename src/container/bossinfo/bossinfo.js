@@ -42,7 +42,7 @@ class BossInfo extends React.Component {
             })
           }}></AvatarSelector>
         <InputItem
-          onChange={v => this.onChange('tite', v)}
+          onChange={v => this.onChange('title', v)}
         >
           招聘职位
         </InputItem>
