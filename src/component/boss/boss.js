@@ -1,7 +1,13 @@
 import React from 'react'
 import axios from 'axios'
 import { Card, WhiteSpace, WingBlank } from 'antd-mobile'
+import { getUserList } from '../../redux/chatuser.redux'
+import { connect } from 'react-redux';
 
+@connect(
+  state => state.chatUser,
+  { getUserList }
+)
 class Boss extends React.Component {
   constructor(props) {
     super(props)
@@ -11,20 +17,15 @@ class Boss extends React.Component {
   }
 
   componentDidMount() {
-    axios.get('/user/list?type=jobSeekers')
-      .then(res => {
-        if (res.data.code === 0) {
-          this.setState({ data: res.data.data })
-        }
-      })
+    this.props.getUserList('jobSeekers')
   }
 
   render() {
     const Header = Card.Header
     const Body = Card.Body
-    console.log('data', this.state.data)
+    // console.log('data', this.state.data)
     return <WingBlank>
-      {this.state.data.map(v => (
+      {this.props.userList.map(v => (
         v.avatar ?
           <Card key={v._id}>
             <Header
@@ -33,7 +34,7 @@ class Boss extends React.Component {
               extra={<span>{v.title}</span>}>
             </Header>
             <Body>
-              {v.desc.split('\n').map(v=>(<div key={v}>{v}</div>))}
+              {v.desc.split('\n').map(v => (<div key={v}>{v}</div>))}
             </Body>
           </Card> : null
       ))}
