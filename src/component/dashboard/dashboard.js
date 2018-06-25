@@ -4,10 +4,7 @@ import { NavBar } from 'antd-mobile'
 import {Switch, Route} from 'react-router-dom'
 import NavLinkBar from '../navlink/navlink'
 import Boss from '../../component/boss/boss'
-
-function JobSeekers() {
-  return <h2>求职者首页</h2>
-}
+import JobSeekers from '../../component/jobseekers/jobseekers'
 
 function Msg() {
   return <h2>消息列表</h2>
