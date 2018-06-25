@@ -9,8 +9,10 @@ const _filter = { 'pwd': 0, '__v': 0 }     //设置查询条件，不显示该�
 
 Router.get('/list', function (req, res) {
   // User.remove({}, function(err,doc){})
-  User.find({}, function (err, doc) {
-    return res.json(doc)
+  const { type } = req.query
+
+  User.find({ type }, function (err, doc) {
+    return res.json({ code: 0, data: doc })
   })
 })
 
@@ -22,12 +24,12 @@ Router.post('/update', function (req, res) {
 
   const body = req.body
   User.findByIdAndUpdate(userid, body, function (err, doc) {
-    if(doc) {
+    if (doc) {
       const data = Object.assign({}, {
         user: doc.user,
         type: doc.type
       }, body)
-  
+
       return res.json({ code: 0, data })
     }
   })
