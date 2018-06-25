@@ -2,7 +2,14 @@
 import React from 'react'
 import { NavBar, InputItem, TextareaItem, Button } from 'antd-mobile'
 import AvatarSelector from '../../component/avatarSelector/avatarSelector'
+import { Redirect } from 'react-router-dom'
+import { connect } from 'react-redux'
+import { update } from '../../redux/user.redux'
 
+@connect(
+  state => state.user,
+  { update }
+)
 class BossInfo extends React.Component {
   constructor(props) {
     super(props)
@@ -18,15 +25,19 @@ class BossInfo extends React.Component {
   }
 
   render() {
+    const path = this.props.location.pathname
+    const redirect = this.props.redirectTo
+
     return (
       <div>
+        {redirect && redirect !== path ? <Redirect to={this.props.redirectTo}></Redirect> : null}
         <NavBar mode="dark" >Boss完善信息页面</NavBar>
-        <AvatarSelector 
-        selectAvatar={(imageName)=> {
-          this.setState({
-            avatar: imageName
-          })
-        }}></AvatarSelector>
+        <AvatarSelector
+          selectAvatar={(imageName) => {
+            this.setState({
+              avatar: imageName
+            })
+          }}></AvatarSelector>
         <InputItem
           onChange={v => this.onChange('tite', v)}
         >
@@ -48,8 +59,12 @@ class BossInfo extends React.Component {
           autoHeight
           title='职位要求'
         />
-        <Button type="primary">保存</Button>
-          
+        <Button
+          onClick={() => {
+            this.props.update(this.state)
+          }}
+          type="primary">保存</Button>
+
       </div>
     )
   }
