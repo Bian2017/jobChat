@@ -10,14 +10,12 @@ import { update } from '../../redux/user.redux'
   state => state.user,
   { update }
 )
-class BossInfo extends React.Component {
+class JobSeekersInfo extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
       title: '',
-      desc: '',
-      company: '',
-      money: ''
+      desc: ''
     }
   }
 
@@ -34,7 +32,7 @@ class BossInfo extends React.Component {
     return (
       <div>
         {redirect && redirect !== path ? <Redirect to={this.props.redirectTo}></Redirect> : null}
-        <NavBar mode="dark" >Boss完善信息页面</NavBar>
+        <NavBar mode="dark" >求职者完善信息页面</NavBar>
         <AvatarSelector
           selectAvatar={(imageName) => {
             this.setState({
@@ -44,23 +42,13 @@ class BossInfo extends React.Component {
         <InputItem
           onChange={v => this.onChange('tite', v)}
         >
-          招聘职位
-        </InputItem>
-        <InputItem
-          onChange={v => this.onChange('company', v)}
-        >
-          公司名称
-        </InputItem>
-        <InputItem
-          onChange={v => this.onChange('money', v)}
-        >
-          职位薪资
+          求职岗位
         </InputItem>
         <TextareaItem
           onChange={v => this.onChange('desc', v)}
           row={3}
           autoHeight
-          title='职位要求'
+          title='个人简介'
         />
         <Button
           onClick={() => {
@@ -73,4 +61,4 @@ class BossInfo extends React.Component {
   }
 }
 
-export default BossInfo
+export default JobSeekersInfo 

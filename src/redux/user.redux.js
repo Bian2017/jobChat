@@ -39,7 +39,8 @@ export function user(state = initState, action) {
   }
 }
 
-function authSuccess(data) {
+function authSuccess(obj) {
+  const {pwd, ...data} = obj                  //通过这种巧妙的方式可以将password过滤掉。
   return { type: AUTH_SUCCESS, payload: data }
 }
 

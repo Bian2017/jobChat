@@ -8,6 +8,7 @@ import { BrowserRouter, Route, Redirect, Switch } from 'react-router-dom'
 import Login from './container/login/login'
 import Register from './container/register/register'
 import BossInfo from './container/bossinfo/bossinfo'
+import JobSeekersInfo from './container/jobseekersinfo/jobSeekersInfo'
 import AuthRoute from './component/authRoute/authRoute'
 import reducers from './reducer'
 import './config'
@@ -31,6 +32,7 @@ ReactDom.render(
         <AuthRoute></AuthRoute>
         <Switch>
           <Route path='/bossinfo' component={BossInfo}></Route>
+          <Route path='/jobseekersinfo' component={JobSeekersInfo}></Route>
           <Route path='/login' component={Login}></Route>
           <Route path='/register' component={Register}></Route>
         </Switch>
