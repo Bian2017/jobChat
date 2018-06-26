@@ -17,8 +17,7 @@ class Chat extends React.Component {
   }
 
   componentDidMount() {
-    this.props.getMsgList()
-    this.props.recvMsg()
+    
   }
 
   handleSubmit() {
@@ -43,7 +42,7 @@ class Chat extends React.Component {
         {this.props.chat.chatmsg.map(v => {
           return v.from === user ? (
             <List key={v._id}>
-              <Item>{v.content}></Item>
+              <Item>{v.content}</Item>
             </List>
           ) : (
               <List key={v._id}>
