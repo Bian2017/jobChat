@@ -1,0 +1,21 @@
+
+
+## Redux
+
+### 1. 在Redux中如何获取全部的state状态
+
+通过第二参数getState可以获取。
+
+```
+export function getMsgList() {
+  return (dispatch, getState) => {
+    axios.get('/user/getmsglist')
+      .then(res => {
+        if (res.status === 200 && res.data.code === 0) {
+          const userid = getState().user._id
+          dispatch(msgList(res.data.msgs, res.data.users))
+        }
+      })
+  }
+}
+```
