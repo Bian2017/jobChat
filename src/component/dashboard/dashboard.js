@@ -1,8 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { NavBar } from 'antd-mobile'
-import {Switch, Route} from 'react-router-dom'
-import NavLinkBar from '../navlink/navlink'
+import NavLinkBar from '../../component/navlink/navlink'
 import Boss from '../../component/boss/boss'
 import JobSeekers from '../../component/jobseekers/jobseekers'
 import User from '../../component/user/user'
@@ -52,16 +51,9 @@ class Dashboard extends React.Component {
         <NavBar className='fixed-header' mode="dard">
           {navList.find(v => v.path === pathname).title}
         </NavBar>
-        <div style={{marginTop:45}}>
-          <Switch>
-            {navList.map(v=>(
-              <Route key={v.path} path={v.path}
-                component={v.component}></Route>
-            ))}
-          </Switch>
-        </div>
-    
-        <NavLinkBar data={navList}></NavLinkBar>
+        <NavLinkBar
+          data={navList}
+        />
       </div>
     )
   }
