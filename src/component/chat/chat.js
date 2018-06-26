@@ -1,12 +1,14 @@
 import React from 'react'
 import { NavBar, List, InputItem, Icon, Grid } from 'antd-mobile'
 import { connect } from 'react-redux'
-import { getMsgList, sendMsg, recvMsg } from '../../redux/chat.redux'
+import { withRouter } from 'react-router-dom'
+import { getMsgList, sendMsg, recvMsg, readMsg } from '../../redux/chat.redux'
 import { getChatId } from '../../util/util';
 
+@withRouter
 @connect(
   state => state,
-  { getMsgList, sendMsg, recvMsg }
+  { getMsgList, sendMsg, recvMsg, readMsg }
 )
 class Chat extends React.Component {
   constructor(props) {
@@ -22,6 +24,11 @@ class Chat extends React.Component {
       this.props.getMsgList()
       this.props.recvMsg()
     }
+  }
+
+  componentWillUnmount() {
+    const to = this.props.match.params.user
+    this.props.readMsg(to)
   }
 
   fixCarousel() {
@@ -110,7 +117,7 @@ class Chat extends React.Component {
               columnNum={9}
               carouselMaxRow={4}
               isCarousel={true}
-              onClick={el=>{
+              onClick={el => {
                 this.setState({
                   text: this.state.text + el.text
                 })
