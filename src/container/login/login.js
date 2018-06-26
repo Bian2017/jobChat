@@ -41,7 +41,7 @@ class Login extends React.Component {
       <div>
         <Logo />
         <h2>登录页</h2>
-        {this.props.redirectTo ? <Redirect to={this.props.redirectTo} /> : null}
+        {this.props.redirectTo&&this.props.redirectTo!='/login' ? <Redirect to={this.props.redirectTo} /> : null}
         <WingBlank>
           <List>
             {this.props.msg ? Toast.info(this.props.msg) : null}
