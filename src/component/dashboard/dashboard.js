@@ -5,15 +5,23 @@ import NavLinkBar from '../../component/navlink/navlink'
 import Boss from '../../component/boss/boss'
 import JobSeekers from '../../component/jobseekers/jobseekers'
 import User from '../../component/user/user'
+import { getMsgList, sendMsg, recvMsg } from '../../redux/chat.redux'
+
 
 function Msg() {
   return <h2>消息列表</h2>
 }
 
 @connect(
-  state => state
+  state => state,
+  { getMsgList, recvMsg }
 )
 class Dashboard extends React.Component {
+  componentDidMount() {
+    this.props.getMsgList()
+    this.props.recvMsg()
+  }
+
   render() {
     const user = this.props.user
     const { pathname } = this.props.location
@@ -45,10 +53,12 @@ class Dashboard extends React.Component {
       title: '个人中心',
       component: User
     }]
-  
-    navList.find(v=>{console.log(
-      'path', v.path, pathname
-    )})
+
+    navList.find(v => {
+      console.log(
+        'path', v.path, pathname
+      )
+    })
     return (
       <div>
         <NavBar className='fixed-header' mode="dard">
