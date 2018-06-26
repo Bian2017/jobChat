@@ -1,5 +1,5 @@
 import React from 'react'
-import { NavBar, List, InputItem } from 'antd-mobile'
+import { NavBar, List, InputItem, Icon } from 'antd-mobile'
 import { connect } from 'react-redux'
 import { getMsgList, sendMsg, recvMsg } from '../../redux/chat.redux'
 
@@ -16,6 +16,13 @@ class Chat extends React.Component {
     }
   }
 
+  componentDidMount() {
+    if (!this.props.chat.chatmsg.length) {
+      this.props.getMsgList()
+      this.props.recvMsg()
+    }
+  }
+
   handleSubmit() {
     const from = this.props.user._id
     const to = this.props.match.params.user
@@ -25,29 +32,42 @@ class Chat extends React.Component {
   }
 
   render() {
-    const user = this.props.match.params.user
+    const userid = this.props.match.params.user
     const Item = List.Item
+    const users = this.props.chat.users
+
+    if (!users[userid]) {
+      return null
+    }
 
     return (
-      <div>
-        <NavBar mode="dark">
-          {this.props.match.params.user}
+      <div id="chat-page">
+        <NavBar
+          mode="dark"
+          icon={<Icon type="left" />}
+          onLeftClick={() => {
+            this.props.history.goBack()
+          }}
+        >
+          {users[userid].name}
         </NavBar>
 
-        {this.props.chat.chatmsg.map(v => {
-          return v.from === user ? (
-            <List key={v._id}>
-              <Item>{v.content}</Item>
-            </List>
-          ) : (
+        {
+          this.props.chat.chatmsg.map(v => {
+            const avatar = require(`../img/${users[v.from].avatar}.png`)
+            return v.from === userid ? (
               <List key={v._id}>
-                <Item
-                  className='chat-me'
-                  extra={'avatar'}
-                >{v.content}</Item>
+                <Item thumb={avatar}>{v.content}</Item>
               </List>
-            )
-        })}
+            ) : (
+                <List key={v._id}>
+                  <Item
+                    className='chat-me'
+                    extra={<img src={avatar} />}
+                  >{v.content}</Item>
+                </List>
+              )
+          })}
         <div className="stick-footer">
           <List>
             <InputItem
