@@ -4,12 +4,9 @@ import { NavBar } from 'antd-mobile'
 import NavLinkBar from '../../component/navlink/navlink'
 import Boss from '../../component/boss/boss'
 import User from '../../component/user/user'
+import Msg from '../../component/msg/msg'
 import JobSeekers from '../../component/jobseekers/jobseekers'
 import { getMsgList, recvMsg } from '../../redux/chat.redux'
-
-function Msg() {
-  return <h2>消息列表</h2>
-}
 
 @connect(
   state => state,
