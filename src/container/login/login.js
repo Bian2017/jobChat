@@ -14,7 +14,7 @@ import formHoc from '../../component/formHoc/formHoc'
 class Login extends React.Component {
   constructor(props) {
     super(props)
-    
+
     //若使用箭头函数，每次都会传入新的一个对象。如下方式虽然会多写几行代码，但性能会有一点点好处，每次传入的都是之前定义好的对象。
     this.register = this.register.bind(this)
     this.handleLogin = this.handleLogin.bind(this)
@@ -31,9 +31,11 @@ class Login extends React.Component {
   render() {
     return (
       <div>
-        <Logo />
         {this.props.redirectTo && this.props.redirectTo !== '/login' ? <Redirect to={this.props.redirectTo} /> : null}
         <WingBlank>
+          <WhiteSpace />
+          <Logo />
+          <WhiteSpace />
           <List>
             {this.props.msg ? Toast.info(this.props.msg) : null}
             <InputItem

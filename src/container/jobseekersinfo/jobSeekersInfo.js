@@ -1,6 +1,6 @@
 
 import React from 'react'
-import { NavBar, InputItem, TextareaItem, Button } from 'antd-mobile'
+import { NavBar, InputItem, TextareaItem, Button, WhiteSpace } from 'antd-mobile'
 import AvatarSelector from '../../component/avatarSelector/avatarSelector'
 import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
@@ -32,7 +32,7 @@ class JobSeekersInfo extends React.Component {
     return (
       <div>
         {redirect && redirect !== path ? <Redirect to={this.props.redirectTo}></Redirect> : null}
-        <NavBar mode="dark" >求职者完善信息页面</NavBar>
+        <NavBar mode="dark" >个人信息完善</NavBar>
         <AvatarSelector
           selectAvatar={(imageName) => {
             this.setState({
@@ -50,12 +50,12 @@ class JobSeekersInfo extends React.Component {
           autoHeight
           title='个人简介'
         />
-        <Button
+        <WhiteSpace />
+        <Button type="primary"
           onClick={() => {
             this.props.update(this.state)
           }}
-          type="primary">保存</Button>
-
+        >保存</Button>
       </div>
     )
   }
