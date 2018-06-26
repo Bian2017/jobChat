@@ -31,13 +31,8 @@ class UserCard extends React.Component {
                 <Body>
                   {v.type === 'boss' ? <div>公司: {v.company}</div> : null}
                   {v.desc.split('\n').map(val => {
-                    if (val) {
-                      return <div key={val}>{val}</div>
-                    } else {
-                      return null
-                    }
-                  }
-                  )}
+                    return val ? <div key={val}>{val}</div> : null
+                  })}
                   {v.type === 'boss' ? <div>薪资：{v.money}</div> : null}
                 </Body>
               </Card>

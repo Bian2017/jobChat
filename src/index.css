@@ -1,4 +1,10 @@
 
+.fix-header.am-navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
 .am-tab-bar {
   position: fixed;
   bottom: 0;
@@ -7,10 +13,8 @@
   /* height: auto; */
 }
 
-.fix-header.am-navbar {
-  position: fixed;
-  top: 0;
-  width: 100%;
+.am-tabs-content-wrap {
+  /* overflow: hidden; */
 }
 
 .am-card-header {
