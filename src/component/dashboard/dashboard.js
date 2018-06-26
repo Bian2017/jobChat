@@ -14,10 +14,11 @@ import { getMsgList, recvMsg } from '../../redux/chat.redux'
 )
 class Dashboard extends React.Component {
   componentDidMount() {
-    if(!this.props.chat.chatmsg.length) {
+    if (!this.props.chat.chatmsg.length) {
       this.props.getMsgList()
       this.props.recvMsg()
     }
+
   }
 
   render() {
@@ -52,13 +53,19 @@ class Dashboard extends React.Component {
       component: User
     }]
 
+    const newArr = navList.find(v => v.path === pathname)
+    if (!newArr) {
+      this.props.history.push('/login')
+      return null
+    }
+
     return (
-      <div>
+      newArr?<div>
         <NavBar className='fixed-header' mode="dard">
-          {navList.find(v => v.path == pathname).title}
+          {newArr.title}
         </NavBar>
         <NavLinkBar data={navList} />
-      </div>
+      </div >:null
     )
   }
 }

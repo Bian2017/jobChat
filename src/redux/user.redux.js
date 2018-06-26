@@ -60,7 +60,7 @@ function errorMsg(msg) {
   return { msg, type: ERROR_MSG }
 }
 
-export function redirectTo(path) {
+export function jumpUrl(path) {
   return { type: REDIRECT, payload: path }
 }
 
