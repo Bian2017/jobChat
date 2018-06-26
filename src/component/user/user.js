@@ -44,7 +44,7 @@ class User extends React.Component {
         <List renderHeader={() => '简介'}>
           <Item multipleLine>{props.title}</Item>
           {
-            props.desc.split('\n').map(v =>
+            props.desc.split('\n').filter(v=>v).map(v =>
               <Brief key={v}>{v}</Brief>)
           }
           {props.money ? <Brief>薪资:{props.money}</Brief> : null}
