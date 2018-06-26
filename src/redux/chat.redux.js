@@ -34,7 +34,7 @@ export function chat(state = initState, action) {
         unread: state.unread + n
       }
     case MSG_READ:
-      const { from, num } = action.payload
+      const { from } = action.payload
 
       return {
         ...state,
