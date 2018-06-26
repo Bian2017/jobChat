@@ -16,10 +16,6 @@ class Chat extends React.Component {
     }
   }
 
-  componentDidMount() {
-    
-  }
-
   handleSubmit() {
     const from = this.props.user._id
     const to = this.props.match.params.user
@@ -29,7 +25,6 @@ class Chat extends React.Component {
   }
 
   render() {
-    console.log(this.props)
     const user = this.props.match.params.user
     const Item = List.Item
 
