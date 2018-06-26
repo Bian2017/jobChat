@@ -3,10 +3,9 @@ import { connect } from 'react-redux'
 import { NavBar } from 'antd-mobile'
 import NavLinkBar from '../../component/navlink/navlink'
 import Boss from '../../component/boss/boss'
-import JobSeekers from '../../component/jobseekers/jobseekers'
 import User from '../../component/user/user'
-import { getMsgList, sendMsg, recvMsg } from '../../redux/chat.redux'
-
+import JobSeekers from '../../component/jobseekers/jobseekers'
+import { getMsgList, recvMsg } from '../../redux/chat.redux'
 
 function Msg() {
   return <h2>消息列表</h2>
@@ -54,19 +53,12 @@ class Dashboard extends React.Component {
       component: User
     }]
 
-    navList.find(v => {
-      console.log(
-        'path', v.path, pathname
-      )
-    })
     return (
       <div>
         <NavBar className='fixed-header' mode="dard">
           {navList.find(v => v.path == pathname).title}
         </NavBar>
-        <NavLinkBar
-          data={navList}
-        />
+        <NavLinkBar data={navList} />
       </div>
     )
   }

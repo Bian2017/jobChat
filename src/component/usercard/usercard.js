@@ -21,20 +21,23 @@ class UserCard extends React.Component {
       <WingBlank>
         {this.props.userList.map(v => (
           v.avatar ?
-            <Card key={v._id} onClick={() => this.handleClick(v)}>
-              <Header
-                title={v.user}
-                thumb={require(`../img/${v.avatar}.png`)}
-                extra={<span>{v.title}</span>}>
-              </Header>
-              <Body>
-                {v.type === 'boss' ? <div>公司: {v.company}</div> : null}
-                {v.desc.split('\n').map(val => (
-                  <div key={val}>{val}</div>
-                ))}
-                {v.type === 'boss' ? <div>薪资：{v.money}</div> : null}
-              </Body>
-            </Card> : null
+            <div key={v._id}>
+              <Card onClick={() => this.handleClick(v)}>
+                <Header
+                  title={v.user}
+                  thumb={require(`../img/${v.avatar}.png`)}
+                  extra={<span>{v.title}</span>}>
+                </Header>
+                <Body>
+                  {v.type === 'boss' ? <div>公司: {v.company}</div> : null}
+                  {v.desc.split('\n').map(val => {
+                    return val ? <div key={val}>{val}</div> : null
+                  })}
+                  {v.type === 'boss' ? <div>薪资：{v.money}</div> : null}
+                </Body>
+              </Card>
+              <WhiteSpace />
+            </div> : null
         ))}
       </WingBlank>
     )

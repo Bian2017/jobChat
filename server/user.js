@@ -6,8 +6,6 @@ const model = require('./model')
 const User = model.getModel('user')
 const Chat = model.getModel('chat')
 
-Chat.remove({},function(e,d){})
-
 const _filter = { 'pwd': 0, '__v': 0 }     //设置查询条件，不显示该字段
 
 Router.get('/list', function (req, res) {
