@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { getMsgList, sendMsg, recvMsg, readMsg } from '../../redux/chat.redux'
 import { getChatId } from '../../util/util'
+import QueueAnim from 'rc-queue-anim'
 
 @withRouter
 @connect(
@@ -75,7 +76,7 @@ class Chat extends React.Component {
         >
           {users[userid].name}
         </NavBar>
-
+        <QueueAnim  type='left' delay={100}>
         {
           chatMsg.map(v => {
             const avatar = require(`../img/${users[v.from].avatar}.png`)
@@ -87,11 +88,14 @@ class Chat extends React.Component {
                 <List key={v._id}>
                   <Item
                     className='chat-me'
-                    extra={<img src={avatar} alt='头像'/>}
+                    extra={<img src={avatar} alt='头像' />}
                   >{v.content}</Item>
                 </List>
               )
-          })}
+          })
+        }
+        </QueueAnim>
+
         <div className="stick-footer">
           <List>
             <InputItem
