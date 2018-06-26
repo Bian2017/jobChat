@@ -47,7 +47,7 @@ class User extends React.Component {
             props.desc.split('\n').filter(v => v).map(v =>
               <Item key={v}><Brief>{v}</Brief></Item>)
           }
-          {props.money ? <Brief>薪资:{props.money}</Brief> : null}
+          {props.money ? <Item><Brief>薪资:{props.money}</Brief></Item>: null}
         </List>
         <WhiteSpace></WhiteSpace>
         <Button
