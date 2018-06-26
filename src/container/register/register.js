@@ -4,33 +4,26 @@ import { List, InputItem, Radio, WingBlank, WhiteSpace, Button, Toast } from 'an
 import { connect } from 'react-redux'
 import { register } from '../../redux/user.redux'
 import { Redirect } from 'react-router-dom'
+import formHoc from '../../component/formHoc/formHoc'
 
 @connect(
   state => state.user,
   { register }
 )
+@formHoc
 class Register extends React.Component {
   constructor(props) {
     super(props)
-    this.state = {
-      user: '',
-      pwd: '',
-      repeatPwd: '',
-      type: 'jobSeekers'      //或者boss
-    }
 
     this.handleRegister = this.handleRegister.bind(this)
   }
 
-  handleChange(key, val) {
-    this.setState({
-      [key]: val
-    })
+  componentDidMount() {
+    this.props.handleChange('type', 'jobSeekers')
   }
 
   handleRegister() {
-    this.props.register(this.state)
-    console.log('state', this.state)
+    this.props.register(this.props.state)
   }
 
   render() {
@@ -43,31 +36,31 @@ class Register extends React.Component {
         <List>
           {this.props.msg ? Toast.info(this.props.msg) : null}
           <InputItem
-            onChange={v => this.handleChange('user', v)}
+            onChange={v => this.props.handleChange('user', v)}
           >
             用户
           </InputItem>
           <InputItem
             type='password'
-            onChange={v => this.handleChange('pwd', v)}
+            onChange={v => this.props.handleChange('pwd', v)}
           >
             密码
           </InputItem>
           <InputItem
             type='password'
-            onChange={v => this.handleChange('repeatPwd', v)}
+            onChange={v => this.props.handleChange('repeatPwd', v)}
           >
             确认密码
           </InputItem>
           <RadioItem
-            checked={this.state.type === 'jobSeekers'}
-            onChange={() => this.handleChange('type', 'jobSeekers')}
+            checked={this.props.state.type === 'jobSeekers'}
+            onChange={() => this.props.handleChange('type', 'jobSeekers')}
           >
             求职者
           </RadioItem>
           <RadioItem
-            checked={this.state.type === 'boss'}
-            onChange={() => this.handleChange('type', 'boss')}
+            checked={this.props.state.type === 'boss'}
+            onChange={() => this.props.handleChange('type', 'boss')}
           >
             老板
           </RadioItem>
