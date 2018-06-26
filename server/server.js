@@ -3,10 +3,21 @@ import bodyParser from 'body-parser'
 import cookieParser from 'cookie-parser'
 import path from 'path'
 import model from './model'
+import React from 'react'
+import { renderToString, renderToStaticMarkup } from 'react-dom/server'
 
 const app = express()
 const Chat = model.getModel('chat')
 
+function App() {
+  return (
+    <div>
+        <p>Server render</p>
+    </div>
+  )
+}
+
+console.log(renderToString(<App></App>))
 
 // 将IO与express关联。
 const server = require('http').Server(app)
@@ -38,7 +49,9 @@ app.use(function (req, res, next) {
   if (req.url.startsWith('/user/') || req.url.startsWith('/static/')) {
     return next()
   }
-  return res.sendFile(path.resolve('build/index.html'))
+  const htmlRes = renderToString(<App></App>)
+  res.send(htmlRes)
+  // return res.sendFile(path.resolve('build/index.html'))
 })
 
 app.use('/', express.static(path.resolve('build')))
