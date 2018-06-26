@@ -3,6 +3,7 @@ import { getRedirectPath } from '../util/util'
 import { userInfo } from 'os';
 
 const AUTH_SUCCESS = 'AUTH_SUCCESS'
+const LOGOUT = 'LOGOUT'
 const ERROR_MSG = 'ERROR_MSG'
 const LOAD_DATA = 'LOAD_DATA'
 
@@ -29,6 +30,11 @@ export function user(state = initState, action) {
         ...state,
         ...action.payload
       }
+    case LOGOUT:
+      return {
+        ...initState,
+        redirectTo: '/login'
+      }
     case ERROR_MSG:
       return {
         ...state,
@@ -40,7 +46,7 @@ export function user(state = initState, action) {
 }
 
 function authSuccess(obj) {
-  const {pwd, ...data} = obj                  //通过这种巧妙的方式可以将password过滤掉。
+  const { pwd, ...data } = obj                  //通过这种巧妙的方式可以将password过滤掉。
   return { type: AUTH_SUCCESS, payload: data }
 }
 
@@ -50,6 +56,10 @@ function errorMsg(msg) {
 
 export function loadData(userInfo) {
   return { type: LOAD_DATA, payload: userInfo }
+}
+
+export function logoutSubmit() {
+  return { type: LOGOUT }
 }
 
 export function update(data) {
