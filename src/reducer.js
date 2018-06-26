@@ -4,5 +4,6 @@
 import { combineReducers } from 'redux'       // 合并所有reducer 并且返回
 import { user } from './redux/user.redux'
 import { chatUser } from './redux/chatuser.redux'
+import { chat } from './redux/chat.redux'
 
-export default combineReducers({ user, chatUser })
+export default combineReducers({ user, chatUser, chat })
