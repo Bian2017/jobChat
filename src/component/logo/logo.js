@@ -1,5 +1,4 @@
 import React from 'react'
-import logoImage from './jobChat.png'
 import './logo.css'
 
 class Login extends React.Component {
@@ -7,7 +6,7 @@ class Login extends React.Component {
   render() {
     return (
       <div className="logoWrapper">
-        <img src={logoImage} alt="" />
+        <img src={require('./jobChat.png')} alt="" />
       </div>
     ) 
   }
