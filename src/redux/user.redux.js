@@ -1,6 +1,5 @@
 import axios from 'axios'
 import { getRedirectPath } from '../util/util'
-import { userInfo } from 'os';
 
 const AUTH_SUCCESS = 'AUTH_SUCCESS'
 const LOGOUT = 'LOGOUT'

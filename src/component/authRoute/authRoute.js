@@ -2,7 +2,7 @@ import React from 'react'
 import axios from 'axios'
 import { withRouter } from 'react-router-dom'
 import { loadData } from '../../redux/user.redux'
-import { connect } from 'react-redux';
+import { connect } from 'react-redux'
 
 // AuthRoute 并不是一个路由组件，只是一个普通组件。
 // 此时可以通过withRouter进行包裹下，就可以获取Router组件的特性。

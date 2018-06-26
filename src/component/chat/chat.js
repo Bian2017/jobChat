@@ -3,7 +3,7 @@ import { NavBar, List, InputItem, Icon, Grid } from 'antd-mobile'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { getMsgList, sendMsg, recvMsg, readMsg } from '../../redux/chat.redux'
-import { getChatId } from '../../util/util';
+import { getChatId } from '../../util/util'
 
 @withRouter
 @connect(
@@ -87,7 +87,7 @@ class Chat extends React.Component {
                 <List key={v._id}>
                   <Item
                     className='chat-me'
-                    extra={<img src={avatar} />}
+                    extra={<img src={avatar} alt='头像'/>}
                   >{v.content}</Item>
                 </List>
               )
