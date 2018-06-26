@@ -2,13 +2,13 @@ import React from 'react'
 import Logo from '../../component/logo/logo'
 import { List, InputItem, WingBlank, WhiteSpace, Button, Toast } from 'antd-mobile'
 import { connect } from 'react-redux'
-import { login } from '../../redux/user.redux'
+import { login, redirectTo } from '../../redux/user.redux'
 import { Redirect } from 'react-router-dom'
 import formHoc from '../../component/formHoc/formHoc'
 
 @connect(
   state => state.user,
-  { login }
+  { login, redirectTo }
 )
 @formHoc
 class Login extends React.Component {
@@ -21,6 +21,7 @@ class Login extends React.Component {
   }
 
   register() {
+    this.props.redirectTo('/register')
     this.props.history.push('/register')
   }
 
