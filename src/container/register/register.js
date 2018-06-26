@@ -14,7 +14,6 @@ import formHoc from '../../component/formHoc/formHoc'
 class Register extends React.Component {
   constructor(props) {
     super(props)
-
     this.handleRegister = this.handleRegister.bind(this)
   }
 

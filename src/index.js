@@ -11,6 +11,7 @@ import BossInfo from './container/bossinfo/bossinfo'
 import JobSeekersInfo from './container/jobseekersinfo/jobSeekersInfo'
 import Dashboard from './component/dashboard/dashboard'
 import AuthRoute from './component/authRoute/authRoute'
+import Chat from './component/chat/chat'
 import reducers from './reducer'
 import './config'
 import './index.css'
@@ -33,6 +34,7 @@ ReactDom.render(
           <Route path='/jobseekersinfo' component={JobSeekersInfo}></Route>
           <Route path='/login' component={Login}></Route>
           <Route path='/register' component={Register}></Route>
+          <Route path='/chat/:user' component={Chat}></Route>
           <Route component={Dashboard}></Route>
         </Switch>
       </div>
