@@ -6,7 +6,7 @@ class Login extends React.Component {
   render() {
     return (
       <div className="logoWrapper">
-        <img src={require('./jobChat.png')} alt="" />
+        <img src={require('./jobChat.jpg')} alt="" />
       </div>
     ) 
   }
