@@ -27,13 +27,14 @@ class Chat extends React.Component {
     }
   }
 
+  // 卸载组件时，给后端发送数据，把当时聊天的信息都置为已读。
   componentWillUnmount() {
     const to = this.props.match.params.user
     this.props.readMsg(to)
   }
 
+  // 解决emoji的bug
   fixCarousel() {
-    // 解决emoji的bug
     setTimeout(function () {
       window.dispatchEvent(new Event('resize'))
     }, 0)
@@ -51,19 +52,49 @@ class Chat extends React.Component {
   }
 
   render() {
+    const Item = List.Item
+    const userid = this.props.match.params.user
+    const users = this.props.chat.users
+    const chatId = getChatId(userid, this.props.user._id)
+    const chatMsg = this.props.chat.chatmsg.filter(v => v.chatid === chatId)
     const emoji = '😀 😃 😄 😁 😆 😅 😂 🤣 😊 😇 😉 😌 😍 😘 😋 😝 😜 🤪 🤨 🧐 🤓 😎 😏 😞 😔 😟 😕 😫 😢 😭 😤 😡 😱 😨 😰 😓 🤗 🤭 🙄 😯 😧 😲 😴 😪 😵 🤐 🤢 🤮 🤧 😷 🤒 👌 👈 👉 🤠 😈 👿 👹 👺 🤡 🖐 😫 😩 😢 😭 😤 😠 😡 💩 👻 💀 ☠️ 💍 💄 💋'
       .split(' ')
       .filter(v => v)    //防止多个空格出现
       .map(v => ({ text: v }))
-    const userid = this.props.match.params.user
-    const Item = List.Item
-    const users = this.props.chat.users
-    const chatId = getChatId(userid, this.props.user._id)
-    const chatMsg = this.props.chat.chatmsg.filter(v => v.chatid === chatId)
 
     if (!users[userid]) {
       return null
     }
+
+    const footerComp = (
+      <div className="stick-footer">
+          <InputItem
+            placeholder="请输入内容"
+            value={this.state.text}
+            onChange={v => { this.setState({ text: v }) }}
+            extra={<div>
+              <span style={{ marginRight: 15 }}
+                onClick={() => {
+                  this.setState({ showEmoji: !this.state.showEmoji })
+                  this.fixCarousel()
+                }}
+              >😀</span>
+              <span onClick={() => this.handleSubmit()}>发送</span>
+            </div>} >
+            聊天
+          </InputItem>
+        {this.state.showEmoji ?
+          <Grid data={emoji}
+            columnNum={9}
+            isCarousel={true}
+            carouselMaxRow={4}
+            onClick={el => {
+              this.setState({
+                text: this.state.text + el.text
+              })
+            }}
+          /> : null}
+      </div>)
 
     return (
       <div id="chat-page">
@@ -76,58 +107,26 @@ class Chat extends React.Component {
         >
           {users[userid].name}
         </NavBar>
-        <QueueAnim  type='left' delay={100}>
-        {
-          chatMsg.map(v => {
-            const avatar = require(`../img/${users[v.from].avatar}.png`)
-            return v.from === userid ? (
-              <List key={v._id}>
-                <Item thumb={avatar}>{v.content}</Item>
-              </List>
-            ) : (
-                <List key={v._id}>
-                  <Item
-                    className='chat-me'
-                    extra={<img src={avatar} alt='头像' />}
-                  >{v.content}</Item>
-                </List>
-              )
-          })
-        }
-        </QueueAnim>
-
-        <div className="stick-footer">
-          <List>
-            <InputItem
-              placeholder="请输入"
-              value={this.state.text}
-              onChange={v => { this.setState({ text: v }) }}
-              extra={<div>
-                <span style={{ marginRight: 15 }}
-                  onClick={() => {
-                    this.setState({ showEmoji: !this.state.showEmoji })
-                    this.fixCarousel()
-                  }}
-                >😀</span>
-                <span onClick={() => this.handleSubmit()}>发送</span>
-              </div>}
-            >
-              信息
-          </InputItem>
-          </List>
-          {this.state.showEmoji ?
-            <Grid
-              data={emoji}
-              columnNum={9}
-              carouselMaxRow={4}
-              isCarousel={true}
-              onClick={el => {
-                this.setState({
-                  text: this.state.text + el.text
-                })
-              }}
-            /> : null}
-        </div>
+        <List
+          renderFooter={() => footerComp}
+        >
+          <QueueAnim type='left' delay={100}>
+            {
+              chatMsg.map(v => {
+                const avatar = require(`../img/${users[v.from].avatar}.png`)
+                return v.from === userid ? (
+                  <Item key={v._id}
+                    thumb={avatar}>{v.content}</Item>
+                ) : (
+                    <Item key={v._id}
+                      className='chat-me'
+                      extra={<img src={avatar} alt='头像' />}
+                    >{v.content}</Item>
+                  )
+              })
+            }
+          </QueueAnim>
+        </List>
       </div>
     )
   }
