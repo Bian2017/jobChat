@@ -1,13 +1,13 @@
 
 ## jobChat
 
-### 项目介绍
+### 项目简介
 
-基于React Router4 + Redux实现的一款招聘聊天APP，[预览地址](jobchat.biangl.com)。
+jobChat是一款带聊天功能的招聘APP，它是基于React Router4和Redux实现的SPA应用，线上[预览地址](jobchat.biangl.com)。
 
-前端：基于React框架进行组件开发，通过Redux管理数据/状态，并通过React Router4实现SPA的路由配置。
+前端实现：基于React框架进行组件开发，通过Redux管理数据/状态，并利用React Router4实现SPA的路由配置。
 
-后端：基于Express开发Web后端，利用Socket.io实现实时应用，并将聊天数据、注册/登录信息等实时存储到MongoDB中。针对SEO，通过SSR进行同构渲染。
+后端实现：基于Express开发Web后端，通过Socket.io实现实时应用，并将聊天数据、注册/登录信息等存储到MongoDB中。在SEO方面，通过SSR进行了同构渲染。
 
 ### 项目小结
 
