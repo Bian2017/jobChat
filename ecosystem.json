@@ -1,0 +1,28 @@
+{
+  "apps": [
+    {
+      "name": "jobChat",
+      "script": "server.js",
+      "env": {
+        "COMMON_VARIABLE": "true"
+      },
+      "env_production": {
+        "NODE_ENV": "production"
+      }
+    }
+  ],
+  "deploy": {
+    "production": {
+      "users": "bgl",
+      "host": ["47.94.251.137"],
+      "port": "3888",
+      "ref": "origin/master",
+      "repo": "git@github.com:Bian2017/jobChat.git",
+      "path": "/jobchat/production",
+      "ssh_options": "StrictHostKeyChecking=no",
+      "env": {
+        "NODE_ENV": "production"
+      }
+    }
+  }
+}
