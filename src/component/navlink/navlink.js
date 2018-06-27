@@ -14,9 +14,10 @@ class NavLinkBar extends React.Component {
   }
 
   render() {
-    const navList = this.props.data.filter(v => !v.hide)
     const { pathname } = this.props.location
-    const Subcomponent = navList.find(v => v.path === pathname).component
+    const navList = this.props.data.filter(v => !v.hide)
+    const newArr = navList.find(v => v.path === pathname)
+    const Subcomponent = newArr && newArr.component
 
     return (
       <TabBar>
@@ -32,7 +33,7 @@ class NavLinkBar extends React.Component {
               this.props.history.push(v.path)
             }}
           >
-            <Subcomponent />
+            <Subcomponent></Subcomponent>
           </TabBar.Item>
         )}
       </TabBar>

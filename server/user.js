@@ -106,7 +106,6 @@ Router.get('/info', function (req, res) {
 Router.post('/readmsg', function (req, res) {
   const userid = req.cookies.userid
   const { from } = req.body
-  console.log('userid', userid, from)
   Chat.update(
     { from, to: userid },
     { '$set': { read: true } },
