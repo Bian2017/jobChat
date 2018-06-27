@@ -2,13 +2,13 @@ import React from 'react'
 import Logo from '../../component/logo/logo'
 import { List, InputItem, WingBlank, WhiteSpace, Button, Toast } from 'antd-mobile'
 import { connect } from 'react-redux'
-import { login, jumpUrl } from '../../redux/user.redux'
+import { login, jumpUrl, errorMsg } from '../../redux/user.redux'
 import { Redirect } from 'react-router-dom'
 import formHoc from '../../component/formHoc/formHoc'
 
 @connect(
   state => state.user,
-  { login, jumpUrl }
+  { login, jumpUrl, errorMsg }
 )
 @formHoc
 class Login extends React.Component {
@@ -29,16 +29,22 @@ class Login extends React.Component {
     this.props.login(this.props.state)
   }
 
+  componentDidUpdate() {
+    if (this.props.msg) {
+      Toast.info(this.props.msg, 3)
+      this.props.errorMsg('')         //清空msg
+    }
+  }
+
   render() {
     return (
       <div>
-        {this.props.redirectTo && this.props.redirectTo !== '/login' ? <Redirect to={this.props.redirectTo} /> : null}
         <WingBlank>
+          {this.props.redirectTo && this.props.redirectTo !== '/login' ? <Redirect to={this.props.redirectTo} /> : null}
           <WhiteSpace />
           <Logo />
           <WhiteSpace />
           <List>
-            {this.props.msg ? Toast.info(this.props.msg) : null}
             <InputItem
               onChange={v => this.props.handleChange('user', v)}
             >

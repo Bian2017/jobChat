@@ -58,10 +58,11 @@ Router.post('/login', function (req, res) {
   //'pwd: 0'表示不显示password字段
   User.findOne({ user, pwd: md5Pwd(pwd) }, _filter, function (err, doc) {
     if (!doc) {
-      res.json({ code: 1, msg: '用户名或者密码错误' })
+      return res.json({ code: 1, msg: '用户名或者密码错误' })
+    } else{
+      res.cookie('userid', doc._id)
+      return res.json({ code: 0, data: doc })
     }
-    res.cookie('userid', doc._id)
-    return res.json({ code: 0, data: doc })
   })
 })
 

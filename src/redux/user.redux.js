@@ -56,7 +56,7 @@ function authSuccess(obj) {
   return { type: AUTH_SUCCESS, payload: data }
 }
 
-function errorMsg(msg) {
+export function errorMsg(msg) {
   return { msg, type: ERROR_MSG }
 }
 
