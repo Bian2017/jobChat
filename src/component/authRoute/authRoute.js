@@ -32,8 +32,6 @@ class AuthRoute extends React.Component {
           }
         }
       })
-
-
   }
 
   render() {

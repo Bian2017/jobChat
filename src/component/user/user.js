@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Result, List, WhiteSpace, Button, Modal } from 'antd-mobile'
+import { Result, List, WhiteSpace, Button, Modal, WingBlank } from 'antd-mobile'
 import browserCookies from 'browser-cookies'
 import { logoutSubmit } from '../../redux/user.redux'
 import { Redirect } from 'react-router-dom'
@@ -35,7 +35,7 @@ class User extends React.Component {
     const Brief = Item.Brief
 
     return props.user ? (
-      < div >
+      <WingBlank>
         <Result
           img={<img src={require(`../img/${this.props.avatar}.png`)} style={{ width: 50 }} alt="" />}
           title={props.user}
@@ -44,16 +44,20 @@ class User extends React.Component {
         <List renderHeader={() => '简介'}>
           <Item multipleLine>{props.title}</Item>
           {
-            props.desc.split('\n').filter(v=>v).map(v =>
-              <Brief key={v}>{v}</Brief>)
+            props.desc.split('\n').filter(v => v).map(v =>
+              <Item key={v}><Brief>{v}</Brief></Item>)
           }
-          {props.money ? <Brief>薪资:{props.money}</Brief> : null}
+          {props.money ? <Item><Brief>薪资:{props.money}</Brief></Item>: null}
         </List>
         <WhiteSpace></WhiteSpace>
-        <List>
-          <Button onClick={this.logout}>注销</Button>
-        </List>
-      </div >) : (props.redirectTo ? <Redirect to={props.redirectTo} /> : null)
+        <Button
+          type="primary"
+          onClick={this.logout}
+        >
+          注销
+        </Button>
+      </WingBlank>
+    ) : (props.redirectTo ? <Redirect to={props.redirectTo} /> : null)
   }
 }
 
