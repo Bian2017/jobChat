@@ -24,6 +24,7 @@ class User extends React.Component {
         text: '确认', onPress: () => {
           browserCookies.erase('userid')
           this.props.logoutSubmit()
+          window.location.href = '/login'
         }
       }
     ])

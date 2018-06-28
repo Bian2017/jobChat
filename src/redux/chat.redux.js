@@ -39,7 +39,7 @@ export function chat(state = initState, action) {
       return {
         ...state,
         chatmsg: state.chatmsg.map(v => ({ ...v, read: from === v.from ? true : v.read })),
-        unread: state.unread - action.payload.num
+        unread: state.unread > action.payload.num ? (state.unread - action.payload.num) : 0
       }
     default:
       return state
