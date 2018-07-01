@@ -22,7 +22,7 @@ if (window.navigator.userAgent.includes('Chrome')) {
       applyMiddleware(thunk),
       // 部署到线上，需注释这行代码，因为在IE和移动端APP该判断条件都为真，
       // 所以正式部署不可以包含这行代码
-      reduxDevtools
+      // reduxDevtools
     )
   )
 } else {

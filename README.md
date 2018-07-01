@@ -25,4 +25,6 @@ jobChat是一款带聊天功能的招聘APP，它是基于React Router4和Redux�
 
 ...
 
+[9. 异常错误处理](https://github.com/Bian2017/jobChat/blob/master/docs/9.%20%E5%BC%82%E5%B8%B8%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86.md)
+
 [10. 感悟](https://github.com/Bian2017/jobChat/blob/master/docs/10.%20%E6%84%9F%E6%82%9F.md)
