@@ -20,7 +20,7 @@ if (window.navigator.userAgent.includes('Chrome')) {
     reducers,
     compose(
       applyMiddleware(thunk),
-      reduxDevtools
+//      reduxDevtools       
     )
   )
 } else {
