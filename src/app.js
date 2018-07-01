@@ -10,8 +10,22 @@ import AuthRoute from './component/authRoute/authRoute'
 import Chat from './component/chat/chat'
 
 class App extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      isError: false
+    }
+  }
+
+  componentDidCatch(err, info) {
+    console.log(err, info)
+    this.setState({
+      isError: true
+    })
+  }
+
   render() {
-   return ( <div>
+    return this.state.isError ? <img src={require('./404.jpg')} alt="error" /> : (<div>
       <AuthRoute></AuthRoute>
       <Switch>
         <Route path='/bossinfo' component={BossInfo}></Route>
