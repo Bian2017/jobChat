@@ -1,8 +1,8 @@
 import io from 'socket.io-client'
 import axios from 'axios'
 
-//const socket = io('ws://localhost:8080')
-const socket = io('ws://jobchat.biangl.com:80')
+const socket = io('ws://localhost:8080')
+// const socket = io('ws://jobchat.biangl.com:80')
 
 // 获取聊天列表
 const MSG_LIST = 'MSG_LIST'

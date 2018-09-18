@@ -1,8 +1,8 @@
 const mongoose = require('mongoose')
 
 // 链接mongo并且使用jobChat集合
-//const DB_URL = 'mongodb://127.0.0.1:27017/jobChat'
-const DB_URL = 'mongodb://127.0.0.1:18888/jobChat'
+const DB_URL = 'mongodb://127.0.0.1:27017/jobChat'
+// const DB_URL = 'mongodb://127.0.0.1:18888/jobChat'
 mongoose.connect(DB_URL)
 
 const models = {
